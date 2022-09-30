@@ -37,7 +37,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
         const tx = await vrfCoordinatorV2Mock.createSubscription()
         const txReceipt = await tx.wait(1)
         subscriptionId = txReceipt.events[0].args.subscriptionId
-        await vrfCoordinatorV2Address.fundSubscription(subscriptionId, FUND_AMOUNT)
+        await vrfCoordinatorV2Mock.fundSubscription(subscriptionId, FUND_AMOUNT)
     } else {
         vrfCoordinatorV2Address = networkConfig[chainId].vrfCoordinatorV2
         subscriptionId = networkConfig[chainId].subscriptionId
